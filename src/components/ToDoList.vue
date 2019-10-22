@@ -121,6 +121,7 @@ ul li {
   margin-bottom: 2px;
   font-weight: bold;
 }
+
 ul.endedTodoList li {
   color: #555;
   background-color: #ccc;
@@ -133,9 +134,7 @@ p {
   padding: 30px 0;
   color: gray;
 }
-.container {
-  box-shadow: 0px 0px 40px lightgray;
-}
+
 input {
   width: calc(100% - 40px);
   border: 0;
