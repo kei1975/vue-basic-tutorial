@@ -10,7 +10,7 @@
       <form @submit.prevent="addToDo">
         <input
           type="text"
-          placeholder="あなたのToDoを入れてください"
+          placeholder="あなたのToDoを入れてください(※3文字以上)"
           v-model="todolist"
           v-validate="'min:3'"
           name="todolist"
@@ -28,7 +28,7 @@
       {{todolist}}
       <br />
 
-      <p>あなたのToDoリストになります</p>
+      <p>[ あなたのToDoリストになります ]</p>
 
       <ul>
         <transition-group
@@ -40,6 +40,16 @@
             {{ data.todolist }}
             <i class="fa fa-minus-circle" v-on:click="remove(index)"></i>
           </li>
+        </transition-group>
+      </ul>
+      <p v-if="endedTodoList.length !== 0">[ Todo対応済みのリスト ]</p>
+      <ul class="endedTodoList">
+        <transition-group
+          name="list"
+          enter-active-class="animated bounceInUp"
+          leave-active-class="animated bounceOutDown"
+        >
+          <li v-for="(data, index) in endedTodoList" :key="`deleted-${index}`">{{ data.todolist }}</li>
         </transition-group>
       </ul>
     </div>
@@ -57,13 +67,14 @@ export default {
       todolists: [
         { todolist: "JSを勉強する" },
         { todolist: "大根を買ってくる" }
-      ]
+      ],
+      endedTodoList: []
     };
   },
   methods: {
     addToDo() {
       this.$validator.validateAll().then(result => {
-        console.log("result = " + result);
+        //console.log("result = " + result);
         if (result && this.todolist != "") {
           this.todolists.push({ todolist: this.todolist });
           this.todolist = "";
@@ -73,7 +84,11 @@ export default {
       });
     },
     remove(id) {
+      //adding removing todo inside ended todolist first.
+      this.endedTodoList.push(this.todolists[id]);
+
       this.todolists.splice(id, 1);
+      //console.log("this.endedTodoList = " + JSON.stringify(this.endedTodoList));
     }
   }
 };
@@ -105,6 +120,13 @@ ul li {
   border-left: 10px solid red;
   margin-bottom: 2px;
   font-weight: bold;
+}
+ul.endedTodoList li {
+  color: #555;
+  background-color: #ccc;
+  border-left: 10px solid #333;
+  text-decoration-line: line-through;
+  opacity: 0.5;
 }
 p {
   text-align: center;
