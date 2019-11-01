@@ -1,6 +1,6 @@
 # vue-skills
 #### [ ガイドサイト ]　[https://jp.vuejs.org/v2/guide/index.html](https://jp.vuejs.org/v2/guide/index.html)
-## Vueで簡単なToDoList入力フォームを作るって見る。  
+## Vueで簡単なToDoList入力フォームを作る。  
 
 ![イメージ図](/screen/001.png)
 
@@ -21,7 +21,7 @@ npm i -g @vue/cli
 ```
 
 ```
-npm create projectname
+vue create projectname
 ```
 >default(babel, lint...)
 
