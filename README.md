@@ -14,6 +14,10 @@
 node -v
 npm -v
 ```
+※もしパーミッションエラーでインストールできない場合、下記URLが参考になります。
+https://qiita.com/okohs/items/ced3c3de30af1035242d?fbclid=IwAR2FZufuHXmIwb28pRJhhHhyk1t66ICq9ZEwYGSfCOWKTXlirOKN05jxN0w
+
+
 
 [https://cli.vuejs.org/guide/installation.html](https://cli.vuejs.org/guide/installation.html)
 ```
