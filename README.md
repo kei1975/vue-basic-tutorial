@@ -41,7 +41,11 @@ npm run serve
 ```
 http://localhost:8080/
 ```
-で確認
+で確認  
+※Vue CLI関連のリンク  
+https://qiita.com/isihigameKoudai/items/eee3eb6a435675fdfd73
+
+##↓時間があれば
 
 ### 2）Vee-Validate バリデートの導入
 インストール(バージョン２)
