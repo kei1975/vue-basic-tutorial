@@ -274,7 +274,7 @@ http://localhost:8080/
 新しくrouter.jsというファイルが追加されています。ページ遷移用の設定ファイルになります。
 先ほどの新規で作られたプロジェクトに追加したい場合は、このページの
 
-> ### 4) Vue-router（ページ遷移）の追加
+> ### [4) Vue-router（ページ遷移）の追加](#vuerouter) 
 
 を参照してみてください。
 
@@ -674,7 +674,7 @@ import ToDo from './components/ToDoList.vue';
 
   
   
-### 4) Vue-router（ページ遷移）の追加
+### <a name="vuerouter"></a>4) Vue-router（ページ遷移）の追加
 ※Vue-cliでプロジェクトを新規に作る時にも追加可能  
 [https://router.vuejs.org/installation.html](https://router.vuejs.org/installation.html)
   
