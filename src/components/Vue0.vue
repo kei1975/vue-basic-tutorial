@@ -24,7 +24,7 @@ export default {
   data() {
     return {
       name: "山田太郎",
-      btnStat: true
+      btnState: true
     };
   }
 };
