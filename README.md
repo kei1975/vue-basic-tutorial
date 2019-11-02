@@ -28,7 +28,7 @@ https://qiita.com/okohs/items/ced3c3de30af1035242d?fbclid=IwAR2FZufuHXmIwb28pRJh
 <br/>
 
 新規プロジェクトを生成する
-```
+```console
 vue create projectname
 ```  
 <small>※"projectname"部分は好きな名称でOK。</small>
@@ -42,13 +42,13 @@ vue create projectname
 ![vue-create-project-after](/screen/vue-create-project-after.png)  
 
 プロジェクト生成後、プロジェクトフォルダに移動する
-```
+```console
 cd projectname
 ```
 <br/>
 
 開発モードで起動する
-```
+```console
 npm run serve
 ```
 を実行
@@ -63,7 +63,7 @@ http://localhost:8080/
 
 
 ※プロジェクトのファイルを出力されたい場合は、プロダクトモード（静的ファイルが生成されます）
-```
+```console
 npm run build
 ```
 を実行してください。
@@ -83,7 +83,7 @@ ___
 
 とりあえず/projectname/src/App.vueの中身をみてみましょう。
 
-```js
+```javascript
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
@@ -128,18 +128,18 @@ templateタグの中に＜HelloWorld＞というタグがありますが、
 こちらは/projectname/src/components/HelloWorld.vueを読み込んで表示している形になっています。
 
 ＜script＞タグでimportをし、
-```js
+```javascript
 import HelloWorld from './components/HelloWorld.vue'
 ```
 
 componentsとして登録することによって、
-```js
+```javascript
 components: {
     HelloWorld
   }
 ```
 ＜template＞タグの中で呼び出すようになっています。
-```js
+```javascript
 <HelloWorld msg="Welcome to Your Vue.js App"/>
 ```
 
@@ -151,7 +151,7 @@ msg="Welcome to Your Vue.js App"
 では早速みてみましょう。
 
 /projectname/src/components/HelloWorld.vue
-```js
+```javascript
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
@@ -194,7 +194,7 @@ a {
 ```
 コンポーネントタグの属性でパラメータを渡したい場合はプロパティ(props)を設定する必要があります。
 ＜script＞タグの中にあるpropsという部分、こちらが先ほど親コンポーネントから渡されているmsgという属性の値を定義しています。
-```js
+```javascript
 props: {
     msg: String
   }
@@ -202,7 +202,7 @@ props: {
 propsでは、
 データの型を記述し、(String = 文字列)
 その後、＜template＞タグの中で渡ってくる値を表示します。
-```js
+```html
 <h1>{{ msg }}</h1>
 ```
 この
@@ -215,7 +215,7 @@ propsでは、
 パラメータからわたってこないデータバイディングの場合は、
 下記のようにdata()内にデータとして持つことができます。
 例）
-```js
+```javascript
 export default {
   name: 'HelloWorld',
   //例えばnameというデータを用意し、"山田太郎"という値を入れてあげる。
@@ -284,7 +284,7 @@ http://localhost:8080/
 
 /vue-basic-tutorial-master/src/router.js
 
-```js
+```javascript
 ////サンプルを確認されたい場合は、各ToDo項目をコメントアウトしながら切り替えていきます。
 
 //v-onとv-bindの使用例
@@ -309,7 +309,7 @@ import ToDo from './components/ToDoList.vue';
 このプロジェクトのダウンロードした状態は、デモの完成版ToDo Listが表示されていますが、
 例えば"v-on"と"v-bind"の使用例を確認されたい場合は、下記のようにコメント部分（スラッシュが２つある部分）を変更します。
 
-```js
+```javascript
 ////サンプルを確認されたい場合は、各ToDo項目をコメントアウトしながら切り替えていきます。
 
 //v-onとv-bindの使用例
@@ -344,7 +344,7 @@ import ToDo from "./components/Vue0.vue";
 というファイルが表示しているコンポーネントになります。
 
 /vue-basic-tutorial-master/src/components/Vue0.vue
-```js
+```javascript
 <template>
   <div class="hello">
     <div class="holder">
@@ -399,7 +399,7 @@ btnStateという変数が存在します。
 <h2>{{ name }}</h2>
 ```
 および
-```
+```javascript
 {{btnState ? 'ボタンは無効化されています' : 'ボタンは有効です'}}
 
 <button v-on:click="changeName" v-bind:disabled="btnState">名前を変更</button>
@@ -407,7 +407,7 @@ btnStateという変数が存在します。
 ```
 部分でデータバインディングしています。
 試しに btnState を false にしてみましょう。
-```js
+```javascript
 data() {
     return {
       name: "山田太郎",
@@ -416,7 +416,7 @@ data() {
   }
 ```
 から
-```js
+```javascript
 data() {
     return {
       name: "山田太郎",
@@ -431,7 +431,7 @@ data() {
  このように他のサンプルもみてみましょうー
  ### v-forとv-ifの使用例
  router.jsファイル
-```js
+```javascript
 ////サンプルを確認されたい場合は、各ToDo項目をコメントアウトしながら切り替えていきます。
 
 //v-onとv-bindの使用例
@@ -458,7 +458,7 @@ import ToDo from "./components/Vue1.vue";
 
 ### 外部CSSの使用例
  router.jsファイル
-```js
+```javascript
 ////サンプルを確認されたい場合は、各ToDo項目をコメントアウトしながら切り替えていきます。
 
 //v-onとv-bindの使用例
@@ -485,7 +485,7 @@ import ToDo from "./components/Vue2.vue";
 
 ### v-bind:classの使用例
  router.jsファイル
-```js
+```javascript
 ////サンプルを確認されたい場合は、各ToDo項目をコメントアウトしながら切り替えていきます。
 
 //v-onとv-bindの使用例
@@ -512,7 +512,7 @@ import ToDo from "./components/Vue3.vue";
 
 ### ToDoList App (Validation & Animation無しバージョン)
  router.jsファイル
-```js
+```javascript
 ////サンプルを確認されたい場合は、各ToDo項目をコメントアウトしながら切り替えていきます。
 
 //v-onとv-bindの使用例
@@ -547,16 +547,16 @@ import ToDo from "./components/ToDoListSimple.vue";
 [http://vee-validate.logaretm.com/v2/](http://vee-validate.logaretm.com/v2/)
 
 npmでインストール
-```
+```console
 npm install vee-validate@2.0.3
 ```
 またはyarn
-```
+```console
 yarn add vee-validate@2.0.3
 ```
 
 src/main.jsに下記を追加
-```
+```javascript
 import VeeValidate, { Validator } from 'vee-validate'
 
 Vue.use(VeeValidate);
