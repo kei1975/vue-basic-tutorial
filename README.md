@@ -10,42 +10,144 @@
 [https://nodejs.org/en/](https://nodejs.org/en/)
 
 バージョンをチェック
-```
+```console
 node -v
 npm -v
 ```
-※もしパーミッションエラーでインストールできない場合、下記URLが参考になります。
-https://qiita.com/okohs/items/ced3c3de30af1035242d?fbclid=IwAR2FZufuHXmIwb28pRJhhHhyk1t66ICq9ZEwYGSfCOWKTXlirOKN05jxN0w
 
 
 
 [https://cli.vuejs.org/guide/installation.html](https://cli.vuejs.org/guide/installation.html)
-```
+```console
 npm i -g @vue/cli
 ```
+<small>*※もしパーミッションエラーでグローバルインストール(rootが所有する{prefix}/lib/node_modules/にパッケージをインストール)できない場合、下記URLが参考になります。  
+https://qiita.com/okohs/items/ced3c3de30af1035242d?fbclid=IwAR2FZufuHXmIwb28pRJhhHhyk1t66ICq9ZEwYGSfCOWKTXlirOKN05jxN0w  
+もし上記でうまくインストールができない場合は、ローカルでinstallしてください。[プロジェクトフォルダを作り、その中で"npm i @vue/cli"(-gを省いた記述)とターミナルでインストール]*</small>
 
+<br/>
+
+新規プロジェクトを生成する
 ```
 vue create projectname
-```
->default(babel, lint...)
+```  
+<small>※"projectname"部分は好きな名称でOK。</small>
 
+![vue-create-project](/screen/vue-create-project.jpg)
+
+とりあえずデフォルトの  
+<pre>default(babel, eslint)</pre>
+を選択  
+<br/>
+![vue-create-project-after](/screen/vue-create-project-after.png)  
+
+プロジェクト生成後、プロジェクトフォルダに移動する
 ```
 cd projectname
 ```
+<br/>
+
+開発モードで起動する
 ```
 npm run serve
 ```
 を実行
 
+<br/>
+
 その後ローカル環境
 ```
 http://localhost:8080/
 ```
-で確認  
+で確認 (ブラウザで上記のURLを開く)  
+
+
+※もしプロジェクトのファイルを出力されたい場合は、プロダクトモード（静的ファイルが生成されます）
+```
+npm run build
+```
+を実行してください。
+実行後、"dist"というフォルダが生成され、静的ファイルがその中に配置されます。
+
+  
+___
 ※Vue CLI関連のリンク  
 https://qiita.com/isihigameKoudai/items/eee3eb6a435675fdfd73
+___
+<br/>
 
-##↓時間があれば
+## プロジェクトの構成図
+![project-structure](/screen/project-structure.png)
+
+![vuecli-project-template-structure.png](/screen/vuecli-project-template-structure.png)  
+
+とりあえずApp.vueの中身をみてみましょう。
+
+```js
+<template>
+  <div id="app">
+    <img alt="Vue logo" src="./assets/logo.png">
+    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  </div>
+</template>
+
+<script>
+import HelloWorld from './components/HelloWorld.vue'
+
+export default {
+  name: 'app',
+  components: {
+    HelloWorld
+  }
+}
+</script>
+
+<style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
+
+```
+主に３つの項目でvueファイルは構成されています。
+
+＜template＞タグの中身がHTML部分（描画される部分）になります。
+
+＜script＞タグの中がjavascriptを記述する場所になります。
+
+＜style＞タグの中にcssを記述する場所になります。
+
+
+このプロジェクト雛形では、
+templateタグの中に＜HelloWorld＞というタグがありますが、
+こちらは/projectname/src/components/HelloWorld.vueを読み込んで表示している形になっています。
+
+＜script＞タグでimportをし、
+```js
+import HelloWorld from './components/HelloWorld.vue'
+```
+
+componentsとして登録することによって、
+```js
+components: {
+    HelloWorld
+  }
+```
+＜template＞タグの中で呼び出すようになっています。
+```js
+<HelloWorld msg="Welcome to Your Vue.js App"/>
+```
+
+
+
+<br/><br/><br/>
+
+#### ↓時間があれば
 
 ### 2）Vee-Validate バリデートの導入
 インストール(バージョン２)
@@ -69,7 +171,7 @@ Vue.use(VeeValidate);
 
 日本語化
 src/main.jsにて
-```
+```javascript
 // vee-validateの日本語ファイルを読み込み
 import ja from 'vee-validate/dist/locale/ja'
 
@@ -78,7 +180,7 @@ Vue.use(VeeValidate, { locale: ja });
 ```
 
 src/components/ToDoList.vueのフォームでの使用例
-```
+```javascript
 <form @submit.prevent="addToDo">
     <input
         type="text"
@@ -99,11 +201,11 @@ v-if, v-show, 等のディレクティブに割り当てることが可能。
 [https://012-jp.vuejs.org/guide/transitions.html](https://012-jp.vuejs.org/guide/transitions.html)  
 name属性にCSSアニメーションclassを割り当てる。  
 例）
-```
+```javascript
 <transition name="animation-in">アニメーションさせたい要素</transition>
 ```
 例）cssスタイル  
-```
+```css
 .animation-in-enter-active {
   animation: bounce-in 0.5s;
 }
