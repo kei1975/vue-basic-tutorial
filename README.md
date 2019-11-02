@@ -253,7 +253,7 @@ vue-basic-tutorial-masterというフォルダが展開されます。
 ```console
 npm i
 ```
-で、プロジェクトに必要なモジュールをインストールします。 
+で、プロジェクトに必要なモジュールをインストールします。  
 例）
 ![install-project](/screen/install-project.png)
 
@@ -274,7 +274,7 @@ http://localhost:8080/
 新しくrouter.jsというファイルが追加されています。ページ遷移用の設定ファイルになります。
 先ほどの新規で作られたプロジェクトに追加したい場合は、このページの
 
-> ### [4) Vue-router（ページ遷移）の追加](#vuerouter) 
+> [4) Vue-router（ページ遷移）の追加](#vuerouter) 
 
 を参照してみてください。
 
