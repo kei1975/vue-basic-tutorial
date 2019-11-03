@@ -16,10 +16,10 @@ import Router from 'vue-router'
 //import ToDo from "./components/Vue3.vue"; 
 
 //ToDoList App (Validation & Animation無しバージョン)
-import ToDo from "./components/ToDoListSimple.vue";
+// import ToDo from "./components/ToDoListSimple.vue";
 
 //ToDoList App (Validation & Animation有りバージョン)
-// import ToDo from './components/ToDoList.vue';
+import ToDo from './components/ToDoList.vue';
 
 
 import About from './components/About.vue'
