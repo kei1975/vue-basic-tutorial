@@ -9,7 +9,6 @@
 
       <form @submit.prevent="addToDo">
         <input type="text" placeholder="あなたのToDoを入れてください" v-model="todolist" />
-        <p class="alert" v-if="this.todolist.length <= this.minWord">{{this.minWord}}文字以上入力してください。</p>
       </form>
       <br />
       {{todolist}}
@@ -43,13 +42,12 @@ export default {
         { todolist: "JSを勉強する" },
         { todolist: "大根を買ってくる" }
       ],
-      endedTodoList: [],
-      minWord: 3
+      endedTodoList: []
     };
   },
   methods: {
     addToDo() {
-      if (this.todolist != "" && this.todolist.length > this.minWord) {
+      if (this.todolist != "") {
         this.todolists.push({ todolist: this.todolist });
         this.todolist = "";
       } else {
