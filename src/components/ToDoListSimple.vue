@@ -8,15 +8,8 @@
       </div>
 
       <form @submit.prevent="addToDo">
-        <input
-          type="text"
-          placeholder="あなたのToDoを入れてください(※3文字以上)"
-          v-model="todolist"
-          v-validate="'min:3'"
-          name="todolist"
-        />
-
-        <p class="alert" v-if="errors.has('todolist')">{{errors.first('todolist')}}</p>
+        <input type="text" placeholder="あなたのToDoを入れてください" v-model="todolist" />
+        <p class="alert" v-if="this.todolist.length <= this.minWord">{{this.minWord}}文字以上入力してください。</p>
       </form>
       <br />
       {{todolist}}
@@ -50,25 +43,23 @@ export default {
         { todolist: "JSを勉強する" },
         { todolist: "大根を買ってくる" }
       ],
-      endedTodoList: []
+      endedTodoList: [],
+      minWord: 3
     };
   },
   methods: {
     addToDo() {
-      this.$validator.validateAll().then(result => {
-        //console.log("result = " + result);
-        if (result && this.todolist != "") {
-          this.todolists.push({ todolist: this.todolist });
-          this.todolist = "";
-        } else {
-          console.log("無効です");
-        }
-      });
+      if (this.todolist != "" && this.todolist.length > this.minWord) {
+        this.todolists.push({ todolist: this.todolist });
+        this.todolist = "";
+      } else {
+        console.log("無効です");
+      }
     },
     remove(id) {
       //adding removing todo inside ended todolist first.
       this.endedTodoList.push(this.todolists[id]);
-
+      //removing from todolists
       this.todolists.splice(id, 1);
       //console.log("this.endedTodoList = " + JSON.stringify(this.endedTodoList));
     }
