@@ -76,7 +76,7 @@ https://qiita.com/isihigameKoudai/items/eee3eb6a435675fdfd73
 ___
 <br/>
 
-## プロジェクトの構成図
+## 2) プロジェクトの構成図について
 ![project-structure](/screen/project-structure.png)
 
 ![vuecli-project-template-structure.png](/screen/vuecli-project-template-structure.png)  
@@ -241,7 +241,7 @@ Welcome to Your Vue.js App
 ```
 と表示されます。
 
-## ここからはサンプルを利用しながら進めていきましょう。
+## 3) ここからはサンプルを利用しながら進めていきましょう。
 まずこのページの一番右上に配置されている"clone or download"ボタンからプロジェクト（vue-basic-tutorial-master.zip）をダウンロードしましょう。
 ![download-project](/screen/download-project.png)
 
@@ -274,7 +274,7 @@ http://localhost:8080/
 新しくrouter.jsというファイルが追加されています。ページ遷移用の設定ファイルになります。
 先ほどの新規で作られたプロジェクトに追加したい場合は、このページの
 
-> [4) Vue-router（ページ遷移）の追加](#vuerouter) 
+> [6) Vue-router（ページ遷移）の追加](#vuerouter) 
 
 を参照してみてください。
 
@@ -542,7 +542,7 @@ import ToDo from "./components/ToDoListSimple.vue";
 
 #### ↓時間があれば
 
-### 2）Vee-Validate バリデートの導入
+### 4）Vee-Validate バリデートの導入
 インストール(バージョン２)
 [http://vee-validate.logaretm.com/v2/](http://vee-validate.logaretm.com/v2/)
 
@@ -589,7 +589,7 @@ src/components/ToDoList.vueのフォームでの使用例
 
 
 
-### 3）アニメーションについて  
+### 5）アニメーションについて  
 v-if, v-show, 等のディレクティブに割り当てることが可能。  
 [https://012-jp.vuejs.org/guide/transitions.html](https://012-jp.vuejs.org/guide/transitions.html)  
 name属性にCSSアニメーションclassを割り当てる。  
@@ -674,7 +674,7 @@ import ToDo from './components/ToDoList.vue';
 
   
   
-### <a name="vuerouter"></a>4) Vue-router（ページ遷移）の追加
+### <a name="vuerouter"></a>6) Vue-router（ページ遷移）の追加
 ※Vue-cliでプロジェクトを新規に作る時にも追加可能  
 [https://router.vuejs.org/installation.html](https://router.vuejs.org/installation.html)
   
