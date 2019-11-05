@@ -11,47 +11,53 @@
 <body>
 
     <div id="app">
-        {{name}}さん、いらっしゃい<br />
+        <!-- 01 -->
+        {{name}}さん、いらっしゃい<br /><!-- 01 -->
         <ul>
-            <li v-for="game in games">{{game}}</li>
-        </ul>
+            <!-- 02 -->
+            <li v-for="game in games">{{game}}</li><!-- 02 -->
+        </ul><!-- 02 -->
 
         <ul>
+            <!-- 03 -->
             <li v-for="game in gamesapi">
-                <input type="number" v-model.number="game.stock">
+                <!-- 03 -->
+                <input type="number" v-model.number="game.stock"><!-- 06 -->
                 商品名：{{game.name}} |
-                <span v-if="game.stock === 0">在庫無し</span>
-                <span v-else>在庫：{{game.stock}}個</span>
-                <button @click="game.stock += 1">在庫を増やす</button>
-            </li>
+                <!-- 03 -->
+                <span v-if="game.stock === 0">在庫無し</span><!-- 03 -->
+                <span v-else>在庫：{{game.stock}}個</span><!-- 03 -->
+                <button @click="game.stock += 1">在庫を増やす</button><!-- 05 -->
+            </li><!-- 03 -->
         </ul>
 
 
-        <h2>全商品の在庫：{{totalProducts}}個</h2>
-    </div>
+        <h2>全商品の在庫：{{totalProducts}}個</h2><!-- 04 -->
+    </div><!-- 01 -->
 
 
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script><!-- 01 -->
     <script>
-        var App = new Vue({
-            el: '#app',
-            data: {
-                name: "山田太郎",
-                games: [
+        var App = new Vue({ //<!-- 01 -->
+            el: '#app',//<!-- 01 -->
+            data: {//<!-- 01 -->
+                name: "山田太郎",//<!-- 01 -->
+                games: [//<!-- 02 -->
                     "Cities: Skylines",
                     "fifa20",
                     "Last of us 2",
                     "GTA"
-                ],
-                gamesapi: []
+                ],//<!-- 02 -->
+                gamesapi: []//<!-- 03 -->
             },
+            //<!-- 03 -->
             created() { //< createdはvueのライフサイクルフックのひとつ　詳細：　https://jp.vuejs.org/v2/api/#created
                 fetch('https://api.myjson.com/bins/tw4ls') //ダミーで作成したjsonをapiで取得(http://myjson.com/tw4ls)
                     .then(response => response.json())
                     .then(json => {
                         this.gamesapi = json.products
                     })
-            },
+            },//<!-- 04 -->
             computed: {　//computed = vueの算出プロパティ　詳細：https://jp.vuejs.org/v2/guide/computed.html
                 totalProducts() {
                     // reduceメソッド ＝ http://js.studio-kingdom.com/javascript/array/reduce
