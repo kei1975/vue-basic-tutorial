@@ -6,7 +6,7 @@
 
 ### １）scriptタグでvue.jsを読み込む方法ですと、効率が悪いのでまずVUE-CLIを入れる流れ
 
-> もしVue.jsファイルを直接 ＜script＞ タグで読み込む方法に興味ある方は[こちらへ](#vuecdn) 
+<!-- >> もしVue.jsファイルを直接 ＜script＞ タグで読み込む方法に興味ある方は[こちらへ](#vuecdn) -->
 
 まずnode.jsをインストール
 [https://nodejs.org/en/](https://nodejs.org/en/)
@@ -754,7 +754,7 @@ src/App.vueで直接ToDoList.vueを読み込むのをやめてナビゲーショ
 
 ![イメージ図3](/screen/003.png)
 　　
-　　
+<!--
 ### <a name="vuecdn"></a>7) CDNを利用したVueのサンプル
 
 > Vue.jsファイルを直接 ＜script＞ タグで読み込む方法
@@ -857,7 +857,7 @@ vue.jsの読み込みをしている下にVueインスタンスを生成する
 </html>
 
 ```
-　　
+　-->
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).  
