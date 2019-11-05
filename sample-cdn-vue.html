@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CDNを利用したVueのサンプル</title>
+</head>
+
+<body>
+
+    <div id="app">
+        {{name}}さん、いらっしゃい<br />
+        <ul>
+            <li v-for="game in games">{{game}}</li>
+        </ul>
+
+        <ul>
+            <li v-for="game in gamesapi">
+                <input type="number" v-model.number="game.stock">
+                商品名：{{game.name}} |
+                <span v-if="game.stock === 0">在庫無し</span>
+                <span v-else>在庫：{{game.stock}}個</span>
+                <button @click="game.stock += 1">在庫を増やす</button>
+            </li>
+        </ul>
+
+
+        <h2>全商品の在庫：{{totalProducts}}個</h2>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        var App = new Vue({
+            el: '#app',
+            data: {
+                name: "山田太郎",
+                games: [
+                    "Cities: Skylines",
+                    "fifa20",
+                    "Last of us 2",
+                    "GTA"
+                ],
+                gamesapi: []
+            },
+            created() { //< createdはvueのライフサイクルフックのひとつ　詳細：　https://jp.vuejs.org/v2/api/#created
+                fetch('https://api.myjson.com/bins/tw4ls') //ダミーで作成したjsonをapiで取得(http://myjson.com/tw4ls)
+                    .then(response => response.json())
+                    .then(json => {
+                        this.gamesapi = json.products
+                    })
+            },
+            computed: {　//computed = vueの算出プロパティ　詳細：https://jp.vuejs.org/v2/guide/computed.html
+                totalProducts() {
+                    // reduceメソッド ＝ http://js.studio-kingdom.com/javascript/array/reduce
+                    return this.gamesapi.reduce((sum, product) => {
+                        return sum + product.stock
+                    }, 0)
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>

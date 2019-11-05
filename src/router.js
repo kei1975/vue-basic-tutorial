@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 ////サンプルを確認されたい場合は、各ToDo項目をコメントアウトしながら切り替えていきます。
+//v-xxxxはディレティブ（HTML5の拡張属性を利用した指令方法）
 
 //v-onとv-bindの使用例
 // import ToDo from "./components/Vue0.vue";

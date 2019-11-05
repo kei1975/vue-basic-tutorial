@@ -6,6 +6,8 @@
 
 ### １）scriptタグでvue.jsを読み込む方法ですと、効率が悪いのでまずVUE-CLIを入れる流れ
 
+> もしVue.jsファイルを直接 ＜script＞ タグで読み込む方法に興味ある方は[こちらへ](#vuecdn) 
+
 まずnode.jsをインストール
 [https://nodejs.org/en/](https://nodejs.org/en/)
 
@@ -286,7 +288,7 @@ http://localhost:8080/
 
 ```javascript
 ////サンプルを確認されたい場合は、各ToDo項目をコメントアウトしながら切り替えていきます。
-
+//v-xxxxはディレティブ（HTML5の拡張属性を利用した指令方法）
 //v-onとv-bindの使用例
 //import ToDo from "./components/Vue0.vue";
 
@@ -311,7 +313,7 @@ import ToDo from './components/ToDoList.vue';
 
 ```javascript
 ////サンプルを確認されたい場合は、各ToDo項目をコメントアウトしながら切り替えていきます。
-
+//v-xxxxはディレティブ（HTML5の拡張属性を利用した指令方法）
 //v-onとv-bindの使用例
 import ToDo from "./components/Vue0.vue";
 
@@ -433,7 +435,7 @@ data() {
  router.jsファイル
 ```javascript
 ////サンプルを確認されたい場合は、各ToDo項目をコメントアウトしながら切り替えていきます。
-
+//v-xxxxはディレティブ（HTML5の拡張属性を利用した指令方法）
 //v-onとv-bindの使用例
 //import ToDo from "./components/Vue0.vue";
 
@@ -460,7 +462,7 @@ import ToDo from "./components/Vue1.vue";
  router.jsファイル
 ```javascript
 ////サンプルを確認されたい場合は、各ToDo項目をコメントアウトしながら切り替えていきます。
-
+//v-xxxxはディレティブ（HTML5の拡張属性を利用した指令方法）
 //v-onとv-bindの使用例
 //import ToDo from "./components/Vue0.vue";
 
@@ -487,7 +489,7 @@ import ToDo from "./components/Vue2.vue";
  router.jsファイル
 ```javascript
 ////サンプルを確認されたい場合は、各ToDo項目をコメントアウトしながら切り替えていきます。
-
+//v-xxxxはディレティブ（HTML5の拡張属性を利用した指令方法）
 //v-onとv-bindの使用例
 //import ToDo from "./components/Vue0.vue";
 
@@ -514,7 +516,7 @@ import ToDo from "./components/Vue3.vue";
  router.jsファイル
 ```javascript
 ////サンプルを確認されたい場合は、各ToDo項目をコメントアウトしながら切り替えていきます。
-
+//v-xxxxはディレティブ（HTML5の拡張属性を利用した指令方法）
 //v-onとv-bindの使用例
 //import ToDo from "./components/Vue0.vue";
 
@@ -646,7 +648,7 @@ leave-active-class="animated flipOutX"
  router.jsファイル
 ```js
 ////サンプルを確認されたい場合は、各ToDo項目をコメントアウトしながら切り替えていきます。
-
+//v-xxxxはディレティブ（HTML5の拡張属性を利用した指令方法）
 //v-onとv-bindの使用例
 //import ToDo from "./components/Vue0.vue";
 
@@ -752,8 +754,108 @@ src/App.vueで直接ToDoList.vueを読み込むのをやめてナビゲーショ
 ![イメージ図3](/screen/003.png)
 　　
 　　
-  
-　　
+### <a name="vuecdn"></a>7) CDNを利用したVueのサンプル
+
+> Vue.jsファイルを直接 ＜script＞ タグで読み込む方法
+
+詳細：https://jp.vuejs.org/v2/guide/index.html
+
+### [ 基本的な設定 ]
+
+埋め込む方法
+```js
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+```
+適当に"app"というIDのdivタグをhtml内に配置する
+```html
+<div id="app"></div>
+```
+
+vue.jsの読み込みをしている下にVueインスタンスを生成する
+```javascript
+<script>
+        var App = new Vue({ //Vueインスタンスの生成
+            el: '#app', //id "app"というDOM要素に割り当てます
+            data: { //適当なデータを用意
+                name: "山田太郎",
+                //以下省略
+            }
+        });
+</script>
+```
+
+サンプルソース
+```html
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CDNを利用したVueのサンプル</title>
+</head>
+
+<body>
+
+    <div id="app">
+        {{name}}さん、いらっしゃい<br />
+        <ul>
+            <li v-for="game in games">{{game}}</li>
+        </ul>
+
+        <ul>
+            <li v-for="game in gamesapi">
+                <input type="number" v-model.number="game.stock">
+                商品名：{{game.name}} |
+                <span v-if="game.stock === 0">在庫無し</span>
+                <span v-else>在庫：{{game.stock}}個</span>
+                <button @click="game.stock += 1">在庫を増やす</button>
+            </li>
+        </ul>
+
+
+        <h2>全商品の在庫：{{totalProducts}}個</h2>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        var App = new Vue({
+            el: '#app',
+            data: {
+                name: "山田太郎",
+                games: [
+                    "cities",
+                    "fifa20",
+                    "Last of us 2",
+                    "GTA"
+                ],
+                gamesapi: []
+            },
+            created() { //< createdはvueのライフサイクルフックのひとつ　詳細：　https://jp.vuejs.org/v2/api/#created
+                fetch('https://api.myjson.com/bins/tw4ls') //ダミーで作成したjsonをapiで取得(http://myjson.com/tw4ls)
+                    .then(response => response.json())
+                    .then(json => {
+                        this.gamesapi = json.products
+                    })
+            },
+            computed: {　//computed = vueの算出プロパティ　詳細：https://jp.vuejs.org/v2/guide/computed.html
+                totalProducts() {
+                    // reduceメソッド ＝ http://js.studio-kingdom.com/javascript/array/reduce
+                    return this.gamesapi.reduce((sum, product) => {
+                        return sum + product.stock
+                    }, 0)
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>
+
+```
 　　
 
 ### Customize configuration
