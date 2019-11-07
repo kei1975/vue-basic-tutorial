@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Methods ve Computed example</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <h1>Methods ve Computed の違い</h1>
+        <button v-on:click="a++">Add to A</button>
+        <button v-on:click="b++">Add to B</button>
+
+        <p>Aの値は{{a}}</p>
+        <p>Bの値は{{b}}</p>
+        <!-- methods version -->
+        <p>Age + A = {{ addToA() }}</p>
+        <p>Age + B = {{ addToB() }}</p>
+
+        <!-- computed version -->
+        <!-- <p>Age + A = {{ addToA }}</p>
+        <p>Age + B = {{ addToB }}</p> -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                age: 20,
+                a: 0,
+                b: 0
+            },
+            methods: {
+                addToA() {
+                    console.log("addToA()が実行されました");
+                    return this.age + this.a;
+                },
+                addToB() {
+                    console.log("addToB()が実行されました");
+                    return this.age + this.b;
+                }
+            },
+            computed: {
+                // addToA() {
+                //     console.log("addToA()が実行されました");
+                //     return this.age + this.a;
+                // },
+                // addToB() {
+                //     console.log("addToB()が実行されました");
+                //     return this.age + this.b;
+                // }
+            }
+
+        });
+    </script>
+</body>
+
+</html>

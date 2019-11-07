@@ -1,0 +1,39 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Cities: Skylines",
+            "stock": 1
+        },
+        {
+            "id": 2,
+            "name": "fifa20",
+            "stock": 2
+        },
+        {
+            "id": 3,
+            "name": "Last of us 2",
+            "stock": 1
+        },
+        {
+            "id": 4,
+            "name": "GTA",
+            "stock": 1
+        },
+        {
+            "id": 5,
+            "name": "龍が如く",
+            "stock": 3
+        },
+        {
+            "id": 6,
+            "name": "ACE COMBAT",
+            "stock": 3
+        },
+        {
+            "id": 7,
+            "name": "SKYRIM",
+            "stock": 0
+        }
+    ]
+}

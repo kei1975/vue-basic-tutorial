@@ -15,7 +15,8 @@
         {{name}}さん、いらっしゃい<br /><!-- 01 -->
         <ul>
             <!-- 02 -->
-            <li v-for="game in games">{{game}}</li><!-- 02 -->
+            <li v-for="game in games"><a v-bind:href="game.url" target="_blank">{{game.name}}</a>
+            </li><!-- 02 -->
         </ul><!-- 02 -->
 
         <ul>
@@ -35,6 +36,11 @@
         <h2>全商品の在庫：{{totalProducts}}個</h2><!-- 04 -->
     </div><!-- 01 -->
 
+    <!-- 06 
+    > v-bindはModelの値をHTMLコンポーネントに出力します。HTMLコンポーネントの値が変わっても、Modelの値は変わりません。ModelからHTMLへの One-Way Binding (一方通行)です。
+    > v-modelはModelとView（HTML）のTwo-Way Binding (双方向)に影響します。 HTMLコンポーネントの値に変更があった場合、自動で Model の値を更新します。入力フォームに割り当て、viewから変更する時に使用する。
+    -->
+
 
     <script src="https://cdn.jsdelivr.net/npm/vue"></script><!-- 01 -->
     <script>
@@ -43,10 +49,10 @@
             data: {//<!-- 01 -->
                 name: "山田太郎",//<!-- 01 -->
                 games: [//<!-- 02 -->
-                    "Cities: Skylines",
-                    "fifa20",
-                    "Last of us 2",
-                    "GTA"
+                    { "name": "Cities:Skylines", "url": "https://www.youtube.com/results?search_query=Cities:Skylines" },
+                    { "name": "fifa20", "url": "https://www.youtube.com/results?search_query=fifa20" },
+                    { "name": "Last of us 2", "url": "https://www.youtube.com/results?search_query=Last of us 2" },
+                    { "name": "Cities:Skylines", "url": "https://www.youtube.com/results?search_query=GTA" },
                 ],//<!-- 02 -->
                 gamesapi: []//<!-- 03 -->
             },
@@ -59,8 +65,12 @@
                     })
             },//<!-- 04 -->
             computed: {　//computed = vueの算出プロパティ　詳細：https://jp.vuejs.org/v2/guide/computed.html
+                /*算出プロパティとは
+                Vue.jsではテンプレート内に計算や式を記述することができますが、使いすぎるとテンプレートにロジックが増えて、メンテナンスしづらくなってしまいます。
+                算出プロパティは処理に名前をつけて、テンプレートに記述することでテンプレートを簡潔にし、この問題を解決してくれます。
+                定義した算出プロパティは、テンプレート上では、あたかも変数であるかのように扱えます。*/
                 totalProducts() {
-                    // reduceメソッド ＝ http://js.studio-kingdom.com/javascript/array/reduce
+                    // es6 reduceメソッド ＝ http://js.studio-kingdom.com/javascript/array/reduce
                     return this.gamesapi.reduce((sum, product) => {
                         return sum + product.stock
                     }, 0)

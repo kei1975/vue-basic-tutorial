@@ -539,7 +539,11 @@ import ToDo from "./components/ToDoListSimple.vue";
 [ソースファイル]
 /vue-basic-tutorial-master/src/components/ToDoListSimple.vue
 
+#### [ v-bindとv-modelの違い ]
 
+> v-bindはModelの値をHTMLコンポーネントに出力します。HTMLコンポーネントの値が変わっても、Modelの値は変わりません。ModelからHTMLへの One-Way Binding (一方通行)です。
+
+> v-modelはModelとView（HTML）のTwo-Way Binding (双方向)に影響します。 HTMLコンポーネントの値に変更があった場合、自動で Model の値を更新します。入力フォームに割り当て、viewから変更する時に使用する。
 
 <br/><br/><br/>
 
