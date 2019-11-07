@@ -6,6 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CDNを利用したVueのサンプル</title>
+    <style>
+        #app {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: darkcyan;
+            font-weight: bold;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        ul li {
+            border-left: 8px solid yellowgreen;
+            padding: 4px;
+            margin-bottom: 4px;
+        }
+
+        input {
+            height: 40px;
+            font-size: 18px;
+        }
+
+        .cart {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 20px;
+            background: yellowgreen;
+            color: #fff;
+
+        }
+    </style>
 </head>
 
 <body>
@@ -33,7 +72,7 @@
         </ul>
 
 
-        <h2>全商品の在庫：{{totalProducts}}個</h2><!-- 04 -->
+        <h2 class="cart">全商品の在庫：{{totalProducts}}個</h2><!-- 04 -->
     </div><!-- 01 -->
 
     <!-- 06 
