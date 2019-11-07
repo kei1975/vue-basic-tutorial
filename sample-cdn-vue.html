@@ -21,6 +21,10 @@
             padding: 0;
         }
 
+        h2 {
+            font-size: 60px;
+        }
+
         a {
             text-decoration: none;
             color: darkcyan;
@@ -48,6 +52,7 @@
         input {
             height: 40px;
             font-size: 18px;
+            padding: 0 10px;
         }
 
         .cart {
@@ -86,7 +91,7 @@
         </ul>
 
 
-        <h2 class="cart">全商品の在庫：{{totalProducts}}個</h2><!-- 04 -->
+        <h2 class="cart">全商品の在庫：{{totalProducts()}}個</h2><!-- 04 -->
     </div><!-- 01 -->
 
     <!-- 06 
@@ -117,18 +122,28 @@
                         this.gamesapi = json.products
                     })
             },//<!-- 04 -->
-            computed: {　//computed = vueの算出プロパティ　詳細：https://jp.vuejs.org/v2/guide/computed.html
-                /*算出プロパティとは
-                Vue.jsではテンプレート内に計算や式を記述することができますが、使いすぎるとテンプレートにロジックが増えて、メンテナンスしづらくなってしまいます。
-                算出プロパティは処理に名前をつけて、テンプレートに記述することでテンプレートを簡潔にし、この問題を解決してくれます。
-                定義した算出プロパティは、テンプレート上では、あたかも変数であるかのように扱えます。*/
+            methods: {
                 totalProducts() {
-                    // es6 reduceメソッド ＝ http://js.studio-kingdom.com/javascript/array/reduce
-                    return this.gamesapi.reduce((sum, product) => {
-                        return sum + product.stock
+                    return this.gamesapi.reduce((sum, item) => {
+                        return sum + item.stock
                     }, 0)
                 }
-            }
+            },
+            // computed: {　//computed = vueの算出プロパティ　詳細：https://jp.vuejs.org/v2/guide/computed.html
+            //     /*算出プロパティとは
+            //     Vue.jsではテンプレート内に計算や式を記述することができますが、使いすぎるとテンプレートにロジックが増えて、メンテナンスしづらくなってしまいます。
+            //     算出プロパティは処理に名前をつけて、テンプレートに記述することでテンプレートを簡潔にし、この問題を解決してくれます。
+            //     定義した算出プロパティは、テンプレート上では、あたかも変数であるかのように扱えます。*/
+            //     totalProducts() {
+            //         // es6 reduceメソッド ＝ http://js.studio-kingdom.com/javascript/array/reduce
+            //         /*reduce()メソッドは配列に対して関数を適用し、その処理によって配列の各値を(左から右に)一つの値にまとめます。*/
+            //         /*reduceを使う理由：for文で記述するより楽だから*/
+            //         return this.gamesapi.reduce((sum, item) => {
+            //             return sum + item.stock
+            //         }, 0)//ここの0はsumの初期値
+
+            //     }
+            // }
         });
 
     </script>
