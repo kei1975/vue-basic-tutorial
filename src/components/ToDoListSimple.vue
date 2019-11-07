@@ -6,6 +6,7 @@
         <h3>ToDoList入力フォーム</h3>
       </div>
 
+      <!--01-->
       <form @submit.prevent="addToDo">
         <input type="text" placeholder="あなたのToDoを入れてください" v-model="todolist" />
       </form>
@@ -13,21 +14,27 @@
       <br />
       {{todolist}}
       <br />
+      <!--01-->
 
+      <!--02-->
       <p>[ あなたのToDoリストになります ]</p>
 
       <ul>
         <li v-for="(data, index) in todolists" :key="`first-${index}`">
           {{ data.todolist }}
+          <!--03-->
           <i class="fa fa-minus-circle" v-on:click="remove(index)"></i>
+          <!--03-->
         </li>
       </ul>
-
+      <!--02-->
+      <!--04-->
       <p v-if="endedTodoList.length !== 0">[ Todo対応済みのリスト ]</p>
 
       <ul class="endedTodoList">
         <li v-for="(data, index) in endedTodoList" :key="`deleted-${index}`">{{ data.todolist }}</li>
       </ul>
+      <!--04-->
     </div>
   </div>
 </template>
@@ -57,13 +64,17 @@ export default {
         console.log("無効です");
       }
     },
+    //03
     remove(id) {
       //adding removing todo inside ended todolist first.
       this.endedTodoList.push(this.todolists[id]);
       //removing from todolists
       this.todolists.splice(id, 1);
+      //The splice() method changes the contents of an array by removing or replacing existing elements and/or adding new elements in place
+      //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
       //console.log("this.endedTodoList = " + JSON.stringify(this.endedTodoList));
     }
+    //03
   }
 };
 </script>
