@@ -1,7 +1,6 @@
 
 <template>
-  <div class="hello">
-    <br />
+  <div>
     <div class="holder">
       <div class="title">
         <h3>ToDoList入力フォーム</h3>
@@ -10,6 +9,7 @@
       <form @submit.prevent="addToDo">
         <input type="text" placeholder="あなたのToDoを入れてください" v-model="todolist" />
       </form>
+
       <br />
       {{todolist}}
       <br />
@@ -22,7 +22,9 @@
           <i class="fa fa-minus-circle" v-on:click="remove(index)"></i>
         </li>
       </ul>
+
       <p v-if="endedTodoList.length !== 0">[ Todo対応済みのリスト ]</p>
+
       <ul class="endedTodoList">
         <li v-for="(data, index) in endedTodoList" :key="`deleted-${index}`">{{ data.todolist }}</li>
       </ul>
@@ -34,14 +36,15 @@
 /* eslint-disable */
 
 export default {
-  name: "ToDoList",
   data() {
     return {
-      todolist: "",
+      todolist: "", //1
+      //2
       todolists: [
         { todolist: "JSを勉強する" },
         { todolist: "大根を買ってくる" }
       ],
+      //3
       endedTodoList: []
     };
   },
@@ -125,17 +128,7 @@ input {
 .alert-in-leave-active {
   animation: bounce-in 0.5s reverse;
 }
-@keyframes bounce-in {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1.5);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
+
 i {
   float: right;
   cursor: pointer;

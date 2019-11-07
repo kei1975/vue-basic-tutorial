@@ -1,6 +1,6 @@
 
 <template>
-  <div class="hello">
+  <div>
     <br />
     <div class="holder">
       <div class="title">
@@ -60,7 +60,6 @@
 /* eslint-disable */
 
 export default {
-  name: "ToDoList",
   data() {
     return {
       todolist: "",
