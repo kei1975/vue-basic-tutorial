@@ -15,9 +15,23 @@
             padding: 20px;
         }
 
+        h1 {
+            font-style: oblique;
+            margin: 0;
+            padding: 0;
+        }
+
         a {
             text-decoration: none;
             color: darkcyan;
+            font-weight: bold;
+            padding: 5px;
+        }
+
+        a:hover {
+            text-decoration: none;
+            background: darkcyan;
+            color: #fff;
             font-weight: bold;
         }
 
@@ -51,7 +65,7 @@
 
     <div id="app">
         <!-- 01 -->
-        {{name}}さん、いらっしゃい<br /><!-- 01 -->
+        <h1>{{name}}さん、いらっしゃい</h1><br /><!-- 01 -->
         <ul>
             <!-- 02 -->
             <li v-for="game in games"><a v-bind:href="game.url" target="_blank">{{game.name}}</a>
