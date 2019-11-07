@@ -1,12 +1,25 @@
-# vue-skills
-#### [ ガイドサイト ]　[https://jp.vuejs.org/v2/guide/index.html](https://jp.vuejs.org/v2/guide/index.html)
-## Vueで簡単なToDoList入力フォームを作る。  
+# Vue勉強会用
+<br/>
+
+#### [ Vueガイドサイト ]　[https://jp.vuejs.org/v2/guide/index.html](https://jp.vuejs.org/v2/guide/index.html)
+## 勉強会の最後にVueで簡単なToDoList入力フォームを作る。
 
 ![イメージ図](/screen/001.png)
 
-### １）scriptタグでvue.jsを読み込む方法ですと、効率が悪いのでまずVUE-CLIを入れる流れ
+<br/>
 
-<!-- >> もしVue.jsファイルを直接 ＜script＞ タグで読み込む方法に興味ある方は[こちらへ](#vuecdn) -->
+### ０）vueをcdn経由で読み込む
+```html
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+```
+> ## htmlからvueを読み込んだ方法で、まずはライブコーディング開始
+> ※ライブコーディングするソースコードは後ほど公開致します。
+
+<!-- >> ライブコーディングしたソースコードは[こちら](#vuecdn) -->
+<br/>
+
+### １）scriptタグでvue.jsを読み込む方法ですと、アプリを作っていく上で効率が悪いのでVUE-CLIをインストールする
+
 
 まずnode.jsをインストール
 [https://nodejs.org/en/](https://nodejs.org/en/)
@@ -760,8 +773,8 @@ src/App.vueで直接ToDoList.vueを読み込むのをやめてナビゲーショ
 
 ![イメージ図3](/screen/003.png)
 　　
-<!--
-### <a name="vuecdn"></a>7) CDNを利用したVueのサンプル
+
+<!-- ### <a name="vuecdn"></a>7) CDNを利用したVueのサンプル
 
 > Vue.jsファイルを直接 ＜script＞ タグで読み込む方法
 
@@ -801,14 +814,72 @@ vue.jsの読み込みをしている下にVueインスタンスを生成する
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CDNを利用したVueのサンプル</title>
+    <style>
+        #app {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+
+        h1 {
+            font-style: oblique;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            font-size: 60px;
+        }
+
+        a {
+            text-decoration: none;
+            color: darkcyan;
+            font-weight: bold;
+            padding: 5px;
+        }
+
+        a:hover {
+            text-decoration: none;
+            background: darkcyan;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        ul li {
+            border-left: 8px solid yellowgreen;
+            padding: 4px;
+            margin-bottom: 4px;
+        }
+
+        input {
+            height: 40px;
+            font-size: 18px;
+            padding: 0 10px;
+        }
+
+        .cart {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 20px;
+            background: yellowgreen;
+            color: #fff;
+
+        }
+    </style>
 </head>
 
 <body>
-
     <div id="app">
-        {{name}}さん、いらっしゃい<br />
+        <h1>{{name}}さん、いらっしゃい</h1><br />
         <ul>
-            <li v-for="game in games">{{game}}</li>
+            <li v-for="game in games"><a v-bind:href="game.url" target="_blank">{{game.name}}</a>
+            </li>
         </ul>
 
         <ul>
@@ -822,24 +893,25 @@ vue.jsの読み込みをしている下にVueインスタンスを生成する
         </ul>
 
 
-        <h2>全商品の在庫：{{totalProducts}}個</h2>
+        <h2 class="cart">全商品の在庫：{{totalProducts}}個</h2>
     </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script>
-        var App = new Vue({
+        var App = new Vue({ 
             el: '#app',
             data: {
                 name: "山田太郎",
                 games: [
-                    "cities",
-                    "fifa20",
-                    "Last of us 2",
-                    "GTA"
+                    { "name": "Cities:Skylines", "url": "https://www.youtube.com/results?search_query=Cities:Skylines" },
+                    { "name": "fifa20", "url": "https://www.youtube.com/results?search_query=fifa20" },
+                    { "name": "Last of us 2", "url": "https://www.youtube.com/results?search_query=Last of us 2" },
+                    { "name": "Cities:Skylines", "url": "https://www.youtube.com/results?search_query=GTA" },
                 ],
                 gamesapi: []
             },
+
             created() { //< createdはvueのライフサイクルフックのひとつ　詳細：　https://jp.vuejs.org/v2/api/#created
                 fetch('https://api.myjson.com/bins/tw4ls') //ダミーで作成したjsonをapiで取得(http://myjson.com/tw4ls)
                     .then(response => response.json())
@@ -848,11 +920,18 @@ vue.jsの読み込みをしている下にVueインスタンスを生成する
                     })
             },
             computed: {　//computed = vueの算出プロパティ　詳細：https://jp.vuejs.org/v2/guide/computed.html
+                /*算出プロパティとは
+                Vue.jsではテンプレート内に計算や式を記述することができますが、使いすぎるとテンプレートにロジックが増えて、メンテナンスしづらくなってしまいます。
+                算出プロパティは処理に名前をつけて、テンプレートに記述することでテンプレートを簡潔にし、この問題を解決してくれます。
+                定義した算出プロパティは、テンプレート上では、あたかも変数であるかのように扱えます。*/
                 totalProducts() {
-                    // reduceメソッド ＝ http://js.studio-kingdom.com/javascript/array/reduce
-                    return this.gamesapi.reduce((sum, product) => {
-                        return sum + product.stock
-                    }, 0)
+                    // es6 reduceメソッド ＝ http://js.studio-kingdom.com/javascript/array/reduce
+                    /*reduce()メソッドは配列に対して関数を適用し、その処理によって配列の各値を(左から右に)一つの値にまとめます。*/
+                    /*reduceを使う理由：for文で記述するより楽だから*/
+                    return this.gamesapi.reduce((sum, item) => {
+                        return sum + item.stock
+                    }, 0)//ここの0はsumの初期値
+
                 }
             }
         });
@@ -862,8 +941,8 @@ vue.jsの読み込みをしている下にVueインスタンスを生成する
 
 </html>
 
-```
-　-->
+``` -->
+　
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).  
