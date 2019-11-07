@@ -75,6 +75,8 @@ npm run build
 ___
 ※Vue CLI関連のリンク  
 https://qiita.com/isihigameKoudai/items/eee3eb6a435675fdfd73
+
+> Vue CLI UI　ターミナルから"vue ui"でUIサーバーが起動し、ブラウザ上でプロジェクト管理が可能
 ___
 <br/>
 
