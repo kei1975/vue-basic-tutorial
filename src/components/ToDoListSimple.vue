@@ -72,6 +72,7 @@ export default {
       this.todolists.splice(id, 1);
       //The splice() method changes the contents of an array by removing or replacing existing elements and/or adding new elements in place
       //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
+
       //console.log("this.endedTodoList = " + JSON.stringify(this.endedTodoList));
     }
     //03
