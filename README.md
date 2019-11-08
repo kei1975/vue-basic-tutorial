@@ -9,13 +9,152 @@
 <br/>
 
 ### ０）vueをcdn経由で読み込む
-```html
-<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-```
+
 > ## htmlからvueを読み込んだ方法で、まずはライブコーディング開始
 > ※ライブコーディングするソースコードは後ほど公開致します。
 
 <!-- >> ライブコーディングしたソースコードは[こちら](#vuecdn) -->
+---
+
+> htmlフォーマッターがない方へ<br>
+> 空のhtmlファイルに下記のフォーマットをコピペしてください。
+
+```html
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+```
+
+bodyタグに下記のscriptタグをコピペしてください。
+```html
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+```
+
+[ ダミーデータ ] 
+※ライブコーディングの途中でコピペして頂きます
+```javascript
+games: [
+  { "name": "Cities:Skylines", "url": "https://www.youtube.com/results?search_query=Cities:Skylines" },
+  { "name": "fifa20", "url": "https://www.youtube.com/results?search_query=fifa20" },
+  { "name": "Last of us 2", "url": "https://www.youtube.com/results?search_query=Last of us 2" },
+  { "name": "Cities:Skylines", "url": "https://www.youtube.com/results?search_query=GTA" },
+]
+```
+
+
+[ ダミーapiを取得する ] (dummy.jsonと同じ内容を登録しています。)
+```
+created() { //< createdはvueのライフサイクルフックのひとつ　詳細：　https://jp.vuejs.org/v2/api/#created
+                fetch('https://api.myjson.com/bins/tw4ls') //ダミーで作成したjsonをapiで取得(http://myjson.com/tw4ls)
+                    .then(response => response.json())
+                    .then(json => {
+                        this.gamesapi = json.products
+                    })
+            },
+```
+[ computedの例 ]
+```javascript
+computed: {　//computed = vueの算出プロパティ　詳細：https://jp.vuejs.org/v2/guide/computed.html
+    /*算出プロパティとは
+    Vue.jsではテンプレート内に計算や式を記述することができますが、使いすぎるとテンプレートにロジックが増えて、メンテナンスしづらくなってしまいます。
+    算出プロパティは処理に名前をつけて、テンプレートに記述することでテンプレートを簡潔にし、この問題を解決してくれます。
+    定義した算出プロパティは、テンプレート上では、あたかも変数であるかのように扱えます。*/
+    totalProducts() {
+        // es6 reduceメソッド ＝ http://js.studio-kingdom.com/javascript/array/reduce
+        /*reduce()メソッドは配列に対して関数を適用し、その処理によって配列の各値を(左から右に)一つの値にまとめます。*/
+        /*reduceを使う理由：for文で記述するより楽だから*/
+        return this.gamesapi.reduce((sum, item) => {
+            return sum + item.stock
+        }, 0)//ここの0はsumの初期値
+
+    }
+}
+```
+[ computedとmethodsの違い ]
+> method-vs-computed-sample.htmlを参照
+
+[ v-bindとv-modelの違い]
+> v-bindはModelの値をHTMLコンポーネントに出力します。HTMLコンポーネントの値が変わっても、Modelの値は変わりません。ModelからHTMLへの One-Way Binding (一方通行)です。<br><br>
+> v-modelはModelとView（HTML）のTwo-Way Binding (双方向)に影響します。 HTMLコンポーネントの値に変更があった場合、自動で Model の値を更新します。入力フォームに割り当て、viewから変更する時に使用する。
+
+[ vueのディレクティブとは ]
+> ディレクティブは、それ自身を Vue インスタンスのプロパティやインスタンスの文脈の中で評価される表現にバインドすることができます。配下のプロパティや表現の値が変更されたら、それらのディレクティブの update() 関数が同期的に呼ばれます。<br>
+> https://012-jp.vuejs.org/api/directives.html
+
+
+[ ライブコーディングで利用するcss ]
+```css
+<style type="text/css">
+        #app {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+
+        h1 {
+            font-style: oblique;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            font-size: 60px;
+        }
+
+        a {
+            text-decoration: none;
+            color: darkcyan;
+            font-weight: bold;
+            padding: 5px;
+        }
+
+        a:hover {
+            text-decoration: none;
+            background: darkcyan;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        ul li {
+            border-left: 8px solid yellowgreen;
+            padding: 4px;
+            margin-bottom: 4px;
+        }
+
+        input {
+            height: 40px;
+            font-size: 18px;
+            padding: 0 10px;
+        }
+
+        .cart {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 20px;
+            background: yellowgreen;
+            color: #fff;
+
+        }
+    </style>
+```
 <br/>
 
 ### １）scriptタグでvue.jsを読み込む方法ですと、アプリを作っていく上で効率が悪いのでVUE-CLIをインストールする
