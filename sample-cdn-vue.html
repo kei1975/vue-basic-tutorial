@@ -69,59 +69,59 @@
 <body>
 
     <div id="app">
-        <!-- 01 -->
-        <h1>{{name}}さん、いらっしゃい</h1><br /><!-- 01 -->
+
+        <h1>{{name}}さん、いらっしゃい</h1><br />
         <ul>
-            <!-- 02 -->
+
             <li v-for="game in games"><a v-bind:href="game.url" target="_blank">{{game.name}}</a>
-            </li><!-- 02 -->
-        </ul><!-- 02 -->
+            </li>
+        </ul>
 
         <ul>
-            <!-- 03 -->
+
             <li v-for="game in gamesapi">
-                <!-- 03 -->
-                <input type="number" v-model.number="game.stock"><!-- 06 -->
+
+                <input type="number" v-model.number="game.stock">
                 商品名：{{game.name}} |
-                <!-- 03 -->
-                <span v-if="game.stock === 0">在庫無し</span><!-- 03 -->
-                <span v-else>在庫：{{game.stock}}個</span><!-- 03 -->
-                <button @click="game.stock += 1">在庫を増やす</button><!-- 05 -->
-            </li><!-- 03 -->
+
+                <span v-if="game.stock === 0">在庫無し</span>
+                <span v-else>在庫：{{game.stock}}個</span>
+                <button @click="game.stock += 1">在庫を増やす</button>
+            </li>
         </ul>
 
 
-        <h2 class="cart">全商品の在庫：{{totalProducts()}}個</h2><!-- 04 -->
-    </div><!-- 01 -->
+        <h2 class="cart">全商品の在庫：{{totalProducts()}}個</h2>
+    </div>
 
-    <!-- 06 
+    <!-- 
     > v-bindはModelの値をHTMLコンポーネントに出力します。HTMLコンポーネントの値が変わっても、Modelの値は変わりません。ModelからHTMLへの One-Way Binding (一方通行)です。
     > v-modelはModelとView（HTML）のTwo-Way Binding (双方向)に影響します。 HTMLコンポーネントの値に変更があった場合、自動で Model の値を更新します。入力フォームに割り当て、viewから変更する時に使用する。
     -->
 
 
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script><!-- 01 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script>
-        var App = new Vue({ //<!-- 01 -->
-            el: '#app',//<!-- 01 -->
-            data: {//<!-- 01 -->
-                name: "山田太郎",//<!-- 01 -->
-                games: [//<!-- 02 -->
+        var App = new Vue({
+            el: '#app',
+            data: {
+                name: "山田太郎",
+                games: [
                     { "name": "Cities:Skylines", "url": "https://www.youtube.com/results?search_query=Cities:Skylines" },
                     { "name": "fifa20", "url": "https://www.youtube.com/results?search_query=fifa20" },
                     { "name": "Last of us 2", "url": "https://www.youtube.com/results?search_query=Last of us 2" },
                     { "name": "Cities:Skylines", "url": "https://www.youtube.com/results?search_query=GTA" },
-                ],//<!-- 02 -->
-                gamesapi: []//<!-- 03 -->
+                ],
+                gamesapi: []
             },
-            //<!-- 03 -->
+
             created() { //< createdはvueのライフサイクルフックのひとつ　詳細：　https://jp.vuejs.org/v2/api/#created
                 fetch('https://api.myjson.com/bins/tw4ls') //ダミーで作成したjsonをapiで取得(http://myjson.com/tw4ls)
                     .then(response => response.json())
                     .then(json => {
                         this.gamesapi = json.products
                     })
-            },//<!-- 04 -->
+            },
             methods: {
                 totalProducts() {
                     return this.gamesapi.reduce((sum, item) => {

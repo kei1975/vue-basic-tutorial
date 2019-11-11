@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-model array sample</title>
+</head>
+
+<body>
+
+    <div id="app">
+
+
+        <input type="checkbox" v-model="arraysample" value="hoge1" /><label for="">hoge1</label><br>
+        <input type="checkbox" v-model="arraysample" value="hoge2" /><label for="">hoge2</label><br>
+        <input type="checkbox" v-model="arraysample" value="hoge3" /><label for="">hoge3</label><br>
+        <input type="checkbox" v-model="arraysample" value="hoge4" /><label for="">hoge4</label><br>
+
+        {{arraysample}}
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                arraysample: []
+            }
+        });
+    </script>
+
+</body>
+
+</html>
