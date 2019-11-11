@@ -5,20 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>v-model array sample</title>
+    <title>v-model checkbox/radios sample</title>
 </head>
 
 <body>
 
     <div id="app">
 
+        <h2>checkbox v-model sample</h2>
+        <input type="checkbox" v-model="arraycheckboxsample" value="hoge1" /><label for="">hoge1</label><br>
+        <input type="checkbox" v-model="arraycheckboxsample" value="hoge2" /><label for="">hoge2</label><br>
+        <input type="checkbox" v-model="arraycheckboxsample" value="hoge3" /><label for="">hoge3</label><br>
+        <input type="checkbox" v-model="arraycheckboxsample" value="hoge4" /><label for="">hoge4</label><br>
 
-        <input type="checkbox" v-model="arraysample" value="hoge1" /><label for="">hoge1</label><br>
-        <input type="checkbox" v-model="arraysample" value="hoge2" /><label for="">hoge2</label><br>
-        <input type="checkbox" v-model="arraysample" value="hoge3" /><label for="">hoge3</label><br>
-        <input type="checkbox" v-model="arraysample" value="hoge4" /><label for="">hoge4</label><br>
+        {{arraycheckboxsample}}<br>
+        <br>
+        <h2>radio v-model sample</h2>
+        <input type="radio" value="radio1" v-model="arrayradiosample"><label for="radio1">radio1</label>
+        <input type="radio" value="radio2" v-model="arrayradiosample"><label for="radio1">radio2</label>
+        <input type="radio" value="radio3" v-model="arrayradiosample"><label for="radio1">radio3</label>
+        <input type="radio" value="radio4" v-model="arrayradiosample"><label for="radio1">radio4</label>
+        <input type="radio" value="radio5" v-model="arrayradiosample"><label for="radio1">radio5</label><br>
 
-        {{arraysample}}
+        {{arrayradiosample}}
 
     </div>
 
@@ -28,7 +37,8 @@
         var app = new Vue({
             el: "#app",
             data: {
-                arraysample: []
+                arraycheckboxsample: [],
+                arrayradiosample: []
             }
         });
     </script>
