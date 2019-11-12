@@ -83,7 +83,7 @@ computed: {　//computed = vueの算出プロパティ　詳細：https://jp.vue
 }
 ```
 [ computedとmethodsの違い ]
-> method-vs-computed-sample.htmlを参照
+> /samples/method-vs-computed-sample.htmlを参照
 
 [ v-bindとv-modelの違い]
 > v-bindはModelの値をHTMLコンポーネントに出力します。HTMLコンポーネントの値が変わっても、Modelの値は変わりません。ModelからHTMLへの One-Way Binding (一方通行)です。<br><br>
