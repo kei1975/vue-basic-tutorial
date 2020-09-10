@@ -177,6 +177,11 @@ npm i -g @vue/cli
 ```
 <small>*※もしパーミッションエラーでグローバルインストール(rootが所有する{prefix}/lib/node_modules/にパッケージをインストール)できない場合、下記URLが参考になります。  
 https://qiita.com/okohs/items/ced3c3de30af1035242d?fbclid=IwAR2FZufuHXmIwb28pRJhhHhyk1t66ICq9ZEwYGSfCOWKTXlirOKN05jxN0w  
+
+```console
+sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}
+```
+
 もし上記でうまくインストールができない場合は、ローカルでinstallしてください。[プロジェクトフォルダを作り、その中で"npm i @vue/cli"(-gを省いた記述)とターミナルでインストール]*</small>
 
 <br/>
